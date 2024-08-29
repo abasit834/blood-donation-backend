@@ -28,24 +28,38 @@ const findDuplicate = async (contact) =>{
 
 
 const retrieveDonors=async(bg,city)=>{
+
+    const threeMonthsAgo = new Date();
+    threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+    threeMonthsAgo.setHours(0, 0, 0, 0); // Set time to midnight to ensure date-only comparison
     
-    const blood = await donor.find({
+    const blood = await donor.find(
+      {
         $and: [
-            {
-                $or: [
-                    { lastdonated: { $lt: new Date(new Date().setMonth(new Date().getMonth() - 3)) } },
-                    { lastdonated: "" }
-                ]
-            },
-            { bloodgroup: bg },
-            { city: city }
+          {
+            $or: [
+              {
+                $expr: {
+                  $lte: [
+                    { $dateToString: { format: "%Y-%m-%d", date: "$lastdonated" } },
+                    { $dateToString: { format: "%Y-%m-%d", date: threeMonthsAgo } }
+                  ]
+                }
+              },
+              { lastdonated: { $exists: true, $eq: "" } } // Checks if lastdonated is an empty string
+            ]
+          },
+          { bloodgroup: bg },
+          { city: city }
         ]
-    }, 
-    {
+      },
+      {
         name: 1,
         city: 1,
         bloodgroup: 1
-    });
+      }
+    );
+    
     
 
     return blood;
