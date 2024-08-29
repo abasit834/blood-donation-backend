@@ -1,9 +1,8 @@
-
 const { Router } = require("express");
 const donor = require("../Controllers/donorController");
 const router = Router();
 
-router.post("/addDonor", async (req, res) => {
+router.post("/addDonor",async (req, res) => {
     const formData = req.body;
     console.log(formData);
     const { name, dob, gender, bloodgroup, weight , city , contact,lastdonated } = formData;
@@ -25,7 +24,7 @@ router.post("/addDonor", async (req, res) => {
 
 
 
-router.post("/retrieveDonors", async (req,res) =>{
+router.post("/retrieveDonors",async (req,res) =>{
     const {bloodgroup,city} = req.body;
     console.log(bloodgroup,city);
 
