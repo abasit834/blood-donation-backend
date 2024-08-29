@@ -25,6 +25,9 @@ mongoose.connect(mongo_conn_url
 
 app.use("/donors",require("./Routes/donorRoutes"));
 app.use("/admin",require("./Routes/adminRoutes"));
+app.use("/recipients", require("./Routes/reciepientRoutes"));
+
+
 
 
 
