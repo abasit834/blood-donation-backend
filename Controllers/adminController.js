@@ -32,3 +32,31 @@ exports.checkUser = async (req,res) => {
     }
 
 }
+
+exports.getRecipient = async (bloodgroup, city) => {
+    const query = {};
+    if (bloodgroup) query.bloodgroup = bloodgroup;
+    if (city) query.city = city;
+
+    return await Recipient.find(query)
+        .sort({ patientName: 1 })
+        .select({ patientName: 1, bloodgroup: 1, city: 1, phoneNumber: 1, age: 1, lastDonated: 1 });
+}
+
+
+exports.getAllDonors = async () => {
+    const donarsss = await donar.find({})
+        .sort({ name: 1 })
+        .select({
+            name: 1,
+            dateofbirth: 1,
+            gender: 1,
+            bloodgroup: 1,
+            weight: 1,
+            city: 1,
+            contactNumber: 1,
+            lastDonated: 1
+        });
+
+    return donarsss; 
+}

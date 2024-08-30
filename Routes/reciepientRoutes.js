@@ -20,19 +20,19 @@ router.post("/addRecipient", async (req, res) => {
     }
 });
 
-router.post("/getRecipient", async (req, res) => {
-    const { bloodgroup, city } = req.body;
+// router.get("/getRecipient", async (req, res) => {
+//     const { bloodgroup, city } = req.body;
 
-    try {
-        const recipients = await recipientController.getRecipient(bloodgroup, city);
-        if (recipients.length < 1) {
-            return res.json("No recipient exists");
-        }
-        return res.json(recipients);
-    } catch (err) {
-        console.log(err);
-        return res.status(500).json("Error Occurred");
-    }
-});
+//     try {
+//         const recipients = await recipientController.getRecipient(bloodgroup, city);
+//         if (recipients.length < 1) {
+//             return res.json("No recipient exists");
+//         }
+//         return res.json(recipients);
+//     } catch (err) {
+//         console.log(err);
+//         return res.status(500).json("Error Occurred");
+//     }
+// });
 
 module.exports = router;

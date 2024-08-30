@@ -59,6 +59,7 @@ const retrieveDonors=async(bg,city)=>{
         bloodgroup: 1
       }
     );
+
     
     
 
@@ -67,6 +68,19 @@ const retrieveDonors=async(bg,city)=>{
 }
 
 
+
+async function getAllDonors() {
+  const donarsss = await donar.find({})
+      .sort({ name: 1 })
+      .select({ name:1,dateofbirth:1,gender:1,bloodgroup:1,weight:1,city:1,contactNumber:1,lastDonated:1});
+
+  return donarsss; 
+}
+
+
+
+
+module.exports.getAllDonors = getAllDonors;
 
 
 

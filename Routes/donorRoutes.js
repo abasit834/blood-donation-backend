@@ -13,7 +13,7 @@ router.post("/addDonor",async (req, res) => {
 
         if(duplicate.length > 0)
         return res.json({dup :true,message:"Donor with this contact number already exists"});   
-
+    
         await donor.addDonor(name,dob,gender,bloodgroup,weight,city,contact,lastdonated);
         return res.sendStatus(200); 
     } catch (error) {
@@ -43,4 +43,4 @@ router.post("/retrieveDonors",async (req,res) =>{
 
 });
 
-module.exports = router;
+module.exports = router; 
