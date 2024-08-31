@@ -15,7 +15,7 @@ router.post("/addDonor",async (req, res) => {
         return res.json({dup :true,message:"Donor with this contact number already exists"});   
 
         await donor.addDonor(name,dob,gender,bloodgroup,weight,city,contact,lastdonated);
-        return res.sendStatus(200); 
+        return res.status(200); 
     } catch (error) {
         console.error('Error submitting data:', error.message);
         return res.status(500).send('Internal Server Error'); 

@@ -1,13 +1,13 @@
 const Recipient = require('../Models/recepientsModel');
 
-const addRecipient = async ({ patientName, bloodgroup, city, phoneNumber, age, lastDonated }) => {
+const addRecipient = async ({ patientName, bloodgroup, city, phoneNumber, age, date }) => {
     const newRecipient = new Recipient({
         patientName,
         bloodgroup,
         city,
         phoneNumber,
         age,
-        lastDonated
+        requestDate : date
     });
 
     await newRecipient.save();

@@ -3,17 +3,17 @@ const recipientController = require("../Controllers/recipientController");
 const router = Router();
 
 router.post("/addRecipient", async (req, res) => {
-    const { patientName, bloodgroup, city, phoneNumber, age, lastDonated } = req.body;
+    const { patientName, bloodgroup, city, phoneNumber, age, date } = req.body;
 
     try {
         const duplicate = await recipientController.findDuplicate(phoneNumber);
 
         if (duplicate.length > 0) {
-            return res.json({ dup: true, message: "Recipient with this contact number already exists" });
+            return res.status(200).json({ dup: true, message: "Recipient with this contact number already exists" });
         }
 
-        await recipientController.addRecipient({ patientName, bloodgroup, city, phoneNumber, age, lastDonated });
-        return res.sendStatus(200);
+        await recipientController.addRecipient({ patientName, bloodgroup, city, phoneNumber, age, date });
+        return res.status(201).json("Recipient added Successfully");
     } catch (error) {
         console.error('Error submitting data:', error.message);
         return res.status(500).send('Internal Server Error');

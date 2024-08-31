@@ -22,8 +22,9 @@ const AddRecipientSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    lastDonated: {
+    requestDate: {
         type: Date,
+        required : true
     }
 });
 
