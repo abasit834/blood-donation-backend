@@ -77,3 +77,45 @@ exports.totatDonors = async (req,res) =>{
         return res.status(500).json("Internal Server Error");
     }
 }
+
+exports.getAllDonors = async (req,res) => {
+    try{
+    const donarsss = await donor.find({})
+        .sort({ name: 1 })
+        .select({
+            name: 1,
+            dateofbirth: 1,
+            gender: 1,
+            bloodgroup: 1,
+            weight: 1,
+            city: 1,
+            contactNumber: 1,
+            lastDonated: 1
+        });
+        return res.status(200).json(donarsss); 
+    }catch(err){
+        console.log(err);
+        return res.status(500).json("Internal Server Error"); 
+    }
+}
+
+exports.getAllRecipients = async (req,res) => {
+    try{
+    const recipients = await recipient.find({})
+        .sort({ name: 1 })
+        .select({
+            patientname: 1,
+            bloodgroup: 1,
+            age: 1,
+            city: 1,
+            phonenumber: 1,
+            requestDate: 1
+        });
+        return res.status(200).json(recipients);
+    }catch(err){
+        return res.status(500).json("Internal Server Error");
+    }
+
+    return recipients; 
+}
+
