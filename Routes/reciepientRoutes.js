@@ -13,7 +13,7 @@ router.post("/addRecipient", async (req, res) => {
         }
 
         await recipientController.addRecipient({ patientName, bloodgroup, city, phoneNumber, age, date });
-        return res.status(201).json("Recipient added Successfully");
+        return res.status(201).json({message : "Recipient added Successfully", success : true });
     } catch (error) {
         console.error('Error submitting data:', error.message);
         return res.status(500).send('Internal Server Error');

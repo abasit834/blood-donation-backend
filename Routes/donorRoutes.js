@@ -12,10 +12,10 @@ router.post("/addDonor",async (req, res) => {
         const duplicate = await donor.findDuplicate(contact);
 
         if(duplicate.length > 0)
-        return res.json({dup :true,message:"Donor with this contact number already exists"});   
+        return res.json({dup :true, success : false , message:"Donor with this contact number already exists"});   
 
         await donor.addDonor(name,dob,gender,bloodgroup,weight,city,contact,lastdonated);
-        return res.status(200); 
+        return res.json({dup : false , success : true , message : "Donor Added Successfully!"}); 
     } catch (error) {
         console.error('Error submitting data:', error.message);
         return res.status(500).send('Internal Server Error'); 
@@ -30,7 +30,6 @@ router.post("/retrieveDonors",async (req,res) =>{
 
     try{
         const response = await donor.retrieveDonors(bloodgroup,city);
-        console.log(response);
         if(response.length < 1)
         return res.json("No donor exists");
         

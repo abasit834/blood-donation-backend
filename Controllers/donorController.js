@@ -56,7 +56,8 @@ const retrieveDonors=async(bg,city)=>{
       {
         name: 1,
         city: 1,
-        bloodgroup: 1
+        bloodgroup: 1,
+        contactNumber: 1
       }
     );
     
