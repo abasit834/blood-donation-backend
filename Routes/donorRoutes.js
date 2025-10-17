@@ -24,7 +24,7 @@ router.post("/addDonor",async (req, res) => {
 
 
 
-router.post("/retrieveDonors",async (req,res) =>{
+router.get("/retrieveDonors",async (req,res) =>{
     const {bloodgroup,city} = req.body;
     console.log(bloodgroup,city);
 
