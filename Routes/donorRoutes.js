@@ -25,11 +25,10 @@ router.post("/addDonor",async (req, res) => {
 
 
 router.get("/retrieveDonors",async (req,res) =>{
-    const {bloodGroup,city} = req.query;
-    console.log(bloodGroup,city);
+    const {bloodgroup,city} = req.query;
 
     try{
-        const response = await donor.retrieveDonors(bloodGroup,city);
+        const response = await donor.retrieveDonors(bloodgroup,city);
         if(response.length < 1)
         return res.json("No donor exists");
         
